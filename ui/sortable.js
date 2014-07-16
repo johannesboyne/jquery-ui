@@ -1157,7 +1157,10 @@ return $.widget("ui.sortable", $.ui.mouse, {
 	},
 
 	_rearrange: function(event, i, a, hardRefresh) {
-
+		// check whether the parent element is disabled
+		if(i.item[0].parentElement.className.match(/ui-sortable-disabled/))
+			return
+		
 		a ? a[0].appendChild(this.placeholder[0]) : i.item[0].parentNode.insertBefore(this.placeholder[0], (this.direction === "down" ? i.item[0] : i.item[0].nextSibling));
 
 		//Various things done here to improve the performance:
